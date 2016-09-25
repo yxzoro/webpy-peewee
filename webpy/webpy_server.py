@@ -1,17 +1,17 @@
-
 # ---------------------------------------http://webpy.org/------------------------------------------ #
 
 import web
-        
+
 urls = (
     '/(.*)', 'Test',
 )
 
 app = web.application(urls, globals())
 
-class Test:        
+
+class Test:
     def GET(self, name):
-        if not name: 
+        if not name:
             name = 'World'
         return 'Hello, ' + name
 
