@@ -23,7 +23,7 @@ class RootWidget(BoxLayout):
 
 
 class CustomBtn(Widget):
-    pressed = ListProperty([0, 0])
+    pressed = ListProperty([0, 0])  # add a property: pressed -> can raise property event later when value changed.
 
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos):

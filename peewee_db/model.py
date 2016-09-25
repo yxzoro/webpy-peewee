@@ -11,12 +11,14 @@ class BaseModel(Model):
 
 
 class User(BaseModel):
-    username = CharField(unique=True)
+    name = CharField(unique=True)
+    password = CharField()
 
 
 class Book(BaseModel):
-    user = ForeignKeyField(User, related_name='books')
-    is_borrowed = BooleanField(default=True)
+    name = CharField(unique=True)
+    user = ForeignKeyField(User, related_name='books')  # None if is_borrowed = False
+    is_borrowed = BooleanField(default=False)
 
 
 # set up db tables:

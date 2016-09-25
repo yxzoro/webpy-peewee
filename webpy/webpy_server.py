@@ -1,6 +1,7 @@
 # ---------------------------------------http://webpy.org/------------------------------------------ #
 
 import web
+import json
 
 urls = (
     '/(.*)', 'Test',
@@ -13,7 +14,7 @@ class Test:
     def GET(self, name):
         if not name:
             name = 'World'
-        return 'Hello, ' + name
+        return json.dumps({"hello":name})
 
 
 if __name__ == "__main__":
