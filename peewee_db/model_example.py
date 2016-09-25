@@ -1,11 +1,9 @@
-
 # --------------------------peewee is similar to Django + SQLAlchemy------------------------------ #
 # ---------------http://docs.peewee-orm.com/en/latest/peewee/quickstart.html---------------------- #
 
 from peewee import *
 from playhouse.sqlite_ext import SqliteExtDatabase
 import datetime
-
 
 # specify database:
 db = SqliteExtDatabase('sqlite.db')
@@ -32,15 +30,13 @@ class Tweet(BaseModel):
 db.connect()
 db.create_tables([User, Tweet])
 
-
 # Create a row:
 charlie = User.create(username='charlie')
 Tweet.create(user=charlie, message='My first tweet')
 huey = User(username='huey')
 huey.save()
 
-
-#----------------- peewee's Query is more like SQLAlchemy's [SQL Expression]:-----------------------#
+# ----------------- peewee's Query is more like SQLAlchemy's [SQL Expression]:-----------------------#
 
 # A simple query selecting a user.
 User.get(User.username == 'charles')
@@ -60,8 +56,8 @@ tweets = (Tweet
 tweets_today = (Tweet
                 .select()
                 .where(
-                    (Tweet.created_date >= datetime.date.today()) &
-                    (Tweet.is_published == True))
+        (Tweet.created_date >= datetime.date.today()) &
+        (Tweet.is_published == True))
                 .count())
 
 # Paginate the user table and show me page 3 (users 41-60).

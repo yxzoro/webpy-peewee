@@ -4,14 +4,14 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 
 '''
-# Andriod app develop key points:
+# kivy Andriod app develop key points:
 
-1. draw UI = widget + layout
-2. handle touch event = finger touch on/off
+1. draw UI = layout + widget 
+2. handle touch event of a widget = on_touch() callback
 '''
 
-class LoginScreen(GridLayout):
 
+class LoginScreen(GridLayout):
     def __init__(self, **kwargs):
         super(LoginScreen, self).__init__(**kwargs)
         self.cols = 2
@@ -24,11 +24,9 @@ class LoginScreen(GridLayout):
 
 
 class MyApp(App):
-
     def build(self):
         return LoginScreen()  # return root Layout 
 
 
 if __name__ == '__main__':
     MyApp().run()
-
