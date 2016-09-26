@@ -1,5 +1,5 @@
 # --------------------------peewee is similar to Django + SQLAlchemy------------------------------ #
-# ---------------http://docs.peewee-orm.com/en/latest/peewee/quickstart.html---------------------- #
+# -------------------http://docs.peewee-orm.com/en/latest/peewee/querying.html-------------------- #
 
 from peewee import *
 from playhouse.sqlite_ext import SqliteExtDatabase
@@ -40,6 +40,10 @@ huey.save()
 
 # A simple query selecting a user.
 User.get(User.username == 'charles')
+
+# iterate all records:
+for tweet in Tweet.select().where(Tweet.user == ''):
+    print '%s: %s' % (tweet.user.username, tweet.message)
 
 # Get tweets created by one of several users. The "<<" operator corresponds to the SQL "IN" operator.
 usernames = ['charlie', 'huey', 'mickey']

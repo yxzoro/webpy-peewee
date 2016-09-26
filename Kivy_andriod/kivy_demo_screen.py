@@ -1,10 +1,16 @@
+# -*- coding: utf-8 -*-
 from kivy.app import App
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
+from kivy.adapters.simplelistadapter import SimpleListAdapter
+from kivy.uix.listview import ListView
 from peewee_db import User, Book
+
+# store global data between screens:
+global_data = {}
 
 
 class MainScreen(Screen):
@@ -14,7 +20,7 @@ class MainScreen(Screen):
         self.pass_input = TextInput(text='put your password.')
 
         box_layout = BoxLayout(orientation='vertical')
-        title_label = Label(text="Main page", font_size='24dp')
+        title_label = Label(text="----Main page----", font_size='24dp')
 
         name_layout = BoxLayout(padding=[30, 30, 30, 30])
         name_layout.add_widget(Label(text="username"))
@@ -54,7 +60,7 @@ class SignScreen(Screen):
         self.pass_input = TextInput(text='put your password.')
 
         box_layout = BoxLayout(orientation='vertical')
-        title_label = Label(text="Main page", font_size='24dp')
+        title_label = Label(text="----Sign page----", font_size='24dp')
 
         name_layout = BoxLayout(padding=[30, 30, 30, 30])
         name_layout.add_widget(Label(text="username"))
@@ -73,12 +79,7 @@ class SignScreen(Screen):
         self.add_widget(box_layout)
 
     def sign(self, *args):
-        try:
-            User.get(User.name == self.name_input.text)
-            print 'user exist'
-        except Exception:
-            User.create(name=self.name_input.text, password=self.pass_input.text)
-            print 'create user ok'
+        User.get_or_create(name=self.name_input.text, password=self.pass_input.text)
         self.manager.current = 'main'
 
 
@@ -87,20 +88,28 @@ class BookScreen(Screen):
         super(BookScreen, self).__init__(**kwargs)
 
         box_layput = BoxLayout(orientation='vertical')
-        title_label = Label(text="----Book page----")
+        box_layput.add_widget(Label(text="----Book list----"))
 
-        box_layput.add_widget(title_label)
+        books = ["<<%s>>  |  borrowed by:  %s" % (
+            book.name, book.user.name) if book.user is not None else "<<%s>>  |  not borrowed" % book.name for book in
+                 Book.select()]
+
+        adapter = SimpleListAdapter(data=books, cls=Button)
+        list_view = ListView(adapter=adapter)
+
         self.add_widget(box_layput)
+        self.add_widget(list_view)
 
 
 class UserScreen(Screen):
     def __init__(self, **kwargs):
         super(UserScreen, self).__init__(**kwargs)
 
-        my_box1 = BoxLayout(orientation='vertical')
-        my_label1 = Label(text="User page")
+        box_layout = BoxLayout(orientation='vertical')
+        title_label1 = Label(name='----User page----')
 
-        self.add_widget(my_box1)
+        box_layout.add_widget(title_label1)
+        self.add_widget(box_layout)
 
 
 class MyApp(App):

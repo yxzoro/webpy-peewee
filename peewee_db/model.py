@@ -19,6 +19,6 @@ class User(BaseModel):
 
 class Book(BaseModel):
     name = CharField(unique=True)
-    user = ForeignKeyField(User, related_name='books')  # None if is_borrowed = False
+    user = ForeignKeyField(User, related_name='books', null=True)  # None if is_borrowed = False
     is_borrowed = BooleanField(default=False)
 
