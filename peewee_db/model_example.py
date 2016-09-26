@@ -76,4 +76,4 @@ users = (User
          .order_by(tweet_ct.desc()))
 
 # Do an atomic update
-Counter.update(count=Counter.count + 1).where(Counter.url == request.url)
+# Counter.update(count=Counter.count + 1).where(Counter.url == request.url)
