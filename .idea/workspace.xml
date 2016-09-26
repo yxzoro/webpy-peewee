@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b8f4b8b-d9c9-4d6a-9630-75a687ee8c74" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Kivy_andriod/kivy_demo_listview.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/peewee_db/sqlite.db" afterPath="$PROJECT_DIR$/peewee_db/sqlite.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Kivy_andriod/kivy_demo_screen.py" afterPath="$PROJECT_DIR$/Kivy_andriod/kivy_demo_screen.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/peewee_db/model.py" afterPath="$PROJECT_DIR$/peewee_db/model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/peewee_db/model_example.py" afterPath="$PROJECT_DIR$/peewee_db/model_example.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Kivy_andriod/kivy_demo_listview.py" afterPath="$PROJECT_DIR$/Kivy_andriod/kivy_demo_listview.py" />
     </list>
     <ignored path="webpy-peewee.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/Kivy_andriod/kivy_demo_listview.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -111,9 +106,9 @@
         <option value="$PROJECT_DIR$/Kivy_andriod/test.py" />
         <option value="$PROJECT_DIR$/peewee_db/model.py" />
         <option value="$PROJECT_DIR$/peewee_db/model_example.py" />
-        <option value="$PROJECT_DIR$/Kivy_andriod/kivy_demo_listview.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/Kivy_andriod/kivy_demo_screen.py" />
+        <option value="$PROJECT_DIR$/Kivy_andriod/kivy_demo_listview.py" />
       </list>
     </option>
   </component>
@@ -481,7 +476,13 @@
       <option name="project" value="LOCAL" />
       <updated>1474875122434</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=".">
+      <created>1474882501375</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1474882501375</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -658,7 +659,7 @@
     <entry file="file://$PROJECT_DIR$/Kivy_andriod/kivy_demo_listview.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
