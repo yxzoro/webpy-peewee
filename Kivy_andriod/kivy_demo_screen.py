@@ -37,9 +37,10 @@ class MainScreen(Screen):
         self.add_widget(box_layout)
 
     def login(self, *args):
-        if User.get(User.name == self.name_input.text, User.password == self.pass_input.text):
+        try:
+            User.get(User.name == self.name_input.text, User.password == self.pass_input.text)
             self.manager.current = 'book'
-        else:
+        except Exception:
             self.name_input.text = self.pass_input.text = 'name or password not right'
 
     def sign(self, *args):
@@ -72,10 +73,12 @@ class SignScreen(Screen):
         self.add_widget(box_layout)
 
     def sign(self, *args):
-        if User.get(User.name == self.name_input.text):
-            pass
-        else:
+        try:
+            User.get(User.name == self.name_input.text)
+            print 'user exist'
+        except Exception:
             User.create(name=self.name_input.text, password=self.pass_input.text)
+            print 'create user ok'
         self.manager.current = 'main'
 
 

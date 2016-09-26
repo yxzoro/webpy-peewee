@@ -14,7 +14,7 @@ class Test:
     def GET(self, name):
         if not name:
             name = 'World'
-        return json.dumps({"hello":name})
+        return json.dumps({"hello": name})
 
 
 if __name__ == "__main__":

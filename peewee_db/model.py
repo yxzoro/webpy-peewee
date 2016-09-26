@@ -1,20 +1,15 @@
 from peewee import *
 from playhouse.sqlite_ext import SqliteExtDatabase
+from os.path import dirname, realpath
 
-db = SqliteExtDatabase('sqlite.db')
+
+db = SqliteExtDatabase('%s\sqlite.db' % dirname(realpath(__file__)))
 
 
 # define model:
 class BaseModel(Model):
     class Meta:
         database = db
-
-    @staticmethod
-    def get(cls, *query, **kwargs):
-        try:
-            return cls.get(*query, **kwargs)
-        except Exception:  # doesn't exist
-            return None
 
 
 class User(BaseModel):
@@ -26,5 +21,4 @@ class Book(BaseModel):
     name = CharField(unique=True)
     user = ForeignKeyField(User, related_name='books')  # None if is_borrowed = False
     is_borrowed = BooleanField(default=False)
-
 
