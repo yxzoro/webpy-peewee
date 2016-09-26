@@ -45,11 +45,14 @@ class MainScreen(Screen):
     def login(self, *args):
         try:
             User.get(User.name == self.name_input.text, User.password == self.pass_input.text)
+            global_data['user_name'] = self.name_input.text
+            self.manager.add_widget(BookScreen(name='book'))
             self.manager.current = 'book'
         except Exception:
             self.name_input.text = self.pass_input.text = 'name or password not right'
 
     def sign(self, *args):
+        self.manager.add_widget(SignScreen(name='sign'))
         self.manager.current = 'sign'
 
 
@@ -86,9 +89,13 @@ class SignScreen(Screen):
 class BookScreen(Screen):
     def __init__(self, **kwargs):
         super(BookScreen, self).__init__(**kwargs)
+        total_layout = BoxLayout()
 
-        box_layput = BoxLayout(orientation='vertical')
+        box_layput = BoxLayout()
         box_layput.add_widget(Label(text="----Book list----"))
+        user_button = Button(text='User Setting')
+        user_button.bind(on_press=self.setting)
+        box_layput.add_widget(user_button)
 
         books = ["<<%s>>  |  borrowed by:  %s" % (
             book.name, book.user.name) if book.user is not None else "<<%s>>  |  not borrowed" % book.name for book in
@@ -97,18 +104,27 @@ class BookScreen(Screen):
         adapter = SimpleListAdapter(data=books, cls=Button)
         list_view = ListView(adapter=adapter)
 
-        self.add_widget(box_layput)
-        self.add_widget(list_view)
+        total_layout.add_widget(box_layput)
+        total_layout.add_widget(list_view)
+        self.add_widget(total_layout)
+
+    def setting(self, *args):
+        self.manager.add_widget(UserScreen(name='user'))
+        self.manager.current = 'user'
 
 
 class UserScreen(Screen):
     def __init__(self, **kwargs):
         super(UserScreen, self).__init__(**kwargs)
 
-        box_layout = BoxLayout(orientation='vertical')
-        title_label1 = Label(name='----User page----')
+        box_layout = BoxLayout()
+        title_label = Label(name='----User: %s----' % global_data['user_name'])
 
-        box_layout.add_widget(title_label1)
+        book_list = [book.name for book in User.get(User.name == global_data['user_name']).books]
+        list_view = ListView(item_strings=book_list)
+
+        box_layout.add_widget(title_label)
+        box_layout.add_widget(list_view)
         self.add_widget(box_layout)
 
 
@@ -116,9 +132,6 @@ class MyApp(App):
     def build(self):
         screen_manager = ScreenManager()
         screen_manager.add_widget(MainScreen(name='main'))
-        screen_manager.add_widget(SignScreen(name='sign'))
-        screen_manager.add_widget(BookScreen(name='book'))
-        screen_manager.add_widget(UserScreen(name='user'))
         return screen_manager
 
 
