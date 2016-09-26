@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b8f4b8b-d9c9-4d6a-9630-75a687ee8c74" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/peewee_db/sqlite.db" afterPath="$PROJECT_DIR$/peewee_db/sqlite.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Kivy_andriod/kivy_demo_listview.py" afterPath="$PROJECT_DIR$/Kivy_andriod/kivy_demo_listview.py" />
     </list>
     <ignored path="webpy-peewee.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,18 +31,6 @@
               <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
               <folding>
                 <element signature="e#24#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="kivy_demo_listview.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Kivy_andriod/kivy_demo_listview.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -482,7 +470,13 @@
       <option name="project" value="LOCAL" />
       <updated>1474882501375</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary=".">
+      <created>1474882523392</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1474882523392</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -648,14 +642,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Kivy_andriod/kivy_demo_listview.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -663,6 +649,14 @@
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
