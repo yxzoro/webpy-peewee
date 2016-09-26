@@ -9,6 +9,13 @@ class BaseModel(Model):
     class Meta:
         database = db
 
+    @staticmethod
+    def get(cls, *query, **kwargs):
+        try:
+            return cls.get(*query, **kwargs)
+        except Exception:  # doesn't exist
+            return None
+
 
 class User(BaseModel):
     name = CharField(unique=True)
@@ -21,6 +28,3 @@ class Book(BaseModel):
     is_borrowed = BooleanField(default=False)
 
 
-# set up db tables:
-db.connect()
-db.create_tables([User, Book])
