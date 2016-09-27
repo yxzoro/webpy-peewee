@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# encoding=utf-8
 from kivy.app import App
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.boxlayout import BoxLayout
@@ -6,33 +6,33 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
-from kivy.uix.listview import ListView
 from peewee_db import User, Book
 
-# store global data between screens:
+
+# store data between screens:
 global_data = {}
 
 
 class MainScreen(Screen):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
-        self.name_input = TextInput(text='put your name.')
-        self.pass_input = TextInput(text='put your password.')
+        self.name_input = TextInput(text='put your name.', size_hint=(0.8, 1))
+        self.pass_input = TextInput(text='put your password.', size_hint=(0.8, 1))
 
         box_layout = BoxLayout(orientation='vertical')
-        title_label = Label(text="----Main page----", font_size='24dp')
+        title_label = Label(text="----Main page----", size_hint=(1, 0.15))
 
-        name_layout = BoxLayout(padding=[30, 30, 30, 30])
-        name_layout.add_widget(Label(text="username"))
+        name_layout = BoxLayout(padding=[10, 10, 10, 10], spacing=20, orientation='horizontal', size_hint=(1, 0.25))
+        name_layout.add_widget(Label(text="username", size_hint=(0.2, 1)))
         name_layout.add_widget(self.name_input)
-        passwd_layout = BoxLayout(padding=[30, 30, 30, 30])
-        passwd_layout.add_widget(Label(text="password"))
+        passwd_layout = BoxLayout(padding=[10, 10, 10, 10], spacing=20, orientation='horizontal', size_hint=(1, 0.25))
+        passwd_layout.add_widget(Label(text="password", size_hint=(0.2, 1)))
         passwd_layout.add_widget(self.pass_input)
 
-        login_button = Button(text="Login in")
+        login_button = Button(text="Login in", size_hint=(1, 0.2))
         login_button.bind(on_press=self.login)
 
-        sign_button = Button(text="Sign in ")
+        sign_button = Button(text="Sign in ", size_hint=(1, 0.2))
         sign_button.bind(on_press=self.sign)
 
         box_layout.add_widget(title_label)
@@ -59,20 +59,21 @@ class MainScreen(Screen):
 class SignScreen(Screen):
     def __init__(self, **kwargs):
         super(SignScreen, self).__init__(**kwargs)
-        self.name_input = TextInput(text='put your name.')
-        self.pass_input = TextInput(text='put your password.')
+
+        self.name_input = TextInput(text='put your name.', size_hint=(0.8, 1))
+        self.pass_input = TextInput(text='put your password.', size_hint=(0.8, 1))
 
         box_layout = BoxLayout(orientation='vertical')
-        title_label = Label(text="----Sign page----", font_size='24dp')
+        title_label = Label(text="----Sign page----", size_hint=(1, 0.15))
 
-        name_layout = BoxLayout(padding=[30, 30, 30, 30])
-        name_layout.add_widget(Label(text="username"))
+        name_layout = BoxLayout(padding=[10, 10, 10, 10], spacing=20, orientation='horizontal', size_hint=(1, 0.25))
+        name_layout.add_widget(Label(text="username", size_hint=(0.2, 1)))
         name_layout.add_widget(self.name_input)
-        passwd_layout = BoxLayout(padding=[30, 30, 30, 30])
-        passwd_layout.add_widget(Label(text="password"))
+        passwd_layout = BoxLayout(padding=[10, 10, 10, 10], spacing=20, orientation='horizontal', size_hint=(1, 0.25))
+        passwd_layout.add_widget(Label(text="password", size_hint=(0.2, 1)))
         passwd_layout.add_widget(self.pass_input)
 
-        sign_button = Button(text="Sign in ")
+        sign_button = Button(text="Sign in ", size_hint=(1, 0.2))
         sign_button.bind(on_press=self.sign)
 
         box_layout.add_widget(title_label)
