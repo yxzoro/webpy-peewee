@@ -7,7 +7,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from peewee_db import User, Book
-
+from webpy.server_adapter import adapter
 
 # store data between screens:
 global_data = {}
@@ -43,12 +43,12 @@ class MainScreen(Screen):
         self.add_widget(box_layout)
 
     def login(self, *args):
-        try:
-            User.get(User.name == self.name_input.text, User.password == self.pass_input.text)
+        flag = adapter.login(name=self.name_input.text, passwd=self.pass_input.text)['flag']
+        if flag == 'success':
             global_data['user_name'] = self.name_input.text
             self.manager.add_widget(BookScreen(name='book'))
             self.manager.current = 'book'
-        except Exception:
+        else:
             self.name_input.text = self.pass_input.text = 'name or password not right'
 
     def sign(self, *args):
@@ -83,21 +83,17 @@ class SignScreen(Screen):
         self.add_widget(box_layout)
 
     def sign(self, *args):
-        User.get_or_create(name=self.name_input.text, password=self.pass_input.text)
+        adapter.sign(name=self.name_input.text, passwd=self.pass_input.text)
         self.manager.current = 'main'
 
 
 class BookScreen(Screen):
     def __init__(self, **kwargs):
         super(BookScreen, self).__init__(**kwargs)
-
         box_layout = BoxLayout(orientation='vertical')
         box_layout.add_widget(Label(text="----User: %s----" % global_data['user_name'], size_hint=(1, 0.1)))
 
-        books = ["<<%s>>  |  borrowed by:  %s" % (
-            book.name, book.user.name) if book.user is not None else "<<%s>>  |  not borrowed" % book.name for book in
-                 Book.select()]
-
+        books = adapter.books()['books']
         for word in books:
             btn = Button(text=word, size_hint=(1, 0.05))
             btn.bind(on_press=self.pop)
@@ -126,10 +122,9 @@ class BookScreen(Screen):
         popup.dismiss()
         book_name = global_data['book_name'][2:-3]
         if 'return' in popup.title:
-            Book.update(user=None, is_borrowed=False).where(Book.name == book_name).execute()
+            adapter.update_book(book_name=book_name)
         elif 'borrowed' not in popup.title:
-            Book.update(user=User.get(name=global_data['user_name']), is_borrowed=True).where(
-                Book.name == book_name).execute()
+            adapter.update_book(user_name=global_data['user_name'], book_name=book_name)
 
 
 class MyApp(App):

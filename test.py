@@ -1,11 +1,5 @@
-# -*- coding: utf-8 -*-
 
-from peewee_db.model import User, Book
-
-# User.create(name='d', password='s')
-
-for i in User.get(name='yx').books:
-    print i
-
-
-
+# get response json:
+import requests
+data = requests.post(url='http://localhost:8080/test', data={'id': 99})
+print data.content
