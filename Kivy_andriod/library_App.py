@@ -6,7 +6,6 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
-from peewee_db import User, Book
 from webpy.server_adapter import adapter
 
 # store data between screens:
