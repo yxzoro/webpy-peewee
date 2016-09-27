@@ -5,7 +5,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
-from kivy.adapters.simplelistadapter import SimpleListAdapter
+from kivy.uix.popup import Popup
 from kivy.uix.listview import ListView
 from peewee_db import User, Book
 
@@ -89,43 +89,46 @@ class SignScreen(Screen):
 class BookScreen(Screen):
     def __init__(self, **kwargs):
         super(BookScreen, self).__init__(**kwargs)
-        total_layout = BoxLayout()
 
-        box_layput = BoxLayout()
-        box_layput.add_widget(Label(text="----Book list----"))
-        user_button = Button(text='User Setting')
-        user_button.bind(on_press=self.setting)
-        box_layput.add_widget(user_button)
+        box_layout = BoxLayout(orientation='vertical')
+        box_layout.add_widget(Label(text="----User: %s----" % global_data['user_name'], size_hint=(1, 0.1)))
 
         books = ["<<%s>>  |  borrowed by:  %s" % (
             book.name, book.user.name) if book.user is not None else "<<%s>>  |  not borrowed" % book.name for book in
                  Book.select()]
 
-        adapter = SimpleListAdapter(data=books, cls=Button)
-        list_view = ListView(adapter=adapter)
-
-        total_layout.add_widget(box_layput)
-        total_layout.add_widget(list_view)
-        self.add_widget(total_layout)
-
-    def setting(self, *args):
-        self.manager.add_widget(UserScreen(name='user'))
-        self.manager.current = 'user'
-
-
-class UserScreen(Screen):
-    def __init__(self, **kwargs):
-        super(UserScreen, self).__init__(**kwargs)
-
-        box_layout = BoxLayout()
-        title_label = Label(name='----User: %s----' % global_data['user_name'])
-
-        book_list = [book.name for book in User.get(User.name == global_data['user_name']).books]
-        list_view = ListView(item_strings=book_list)
-
-        box_layout.add_widget(title_label)
-        box_layout.add_widget(list_view)
+        for word in books:
+            btn = Button(text=word, size_hint=(1, 0.05))
+            btn.bind(on_press=self.pop)
+            box_layout.add_widget(btn)
         self.add_widget(box_layout)
+
+    def pop(self, *args):
+        button_text = args[0].text
+        book_name = button_text.split(' | ')[0]
+        global_data.update({'book_name': book_name})
+        if 'borrowed by' in button_text:
+            if global_data['user_name'] in button_text:
+                text = 'return %s ?' % book_name
+            else:
+                text = '%s is already borrowed...' % book_name
+        else:
+            text = 'borrow %s ?' % book_name
+        btn = Button(text='ok')
+        popup = Popup(title=text, content=btn, size_hint=(0.5, 0.2))
+        global_data['pop'] = popup
+        btn.bind(on_press=self.dismiss)
+        popup.open()
+
+    def dismiss(self, *args):
+        popup = global_data['pop']
+        popup.dismiss()
+        book_name = global_data['book_name'][2:-3]
+        if 'return' in popup.title:
+            Book.update(user=None, is_borrowed=False).where(Book.name == book_name).execute()
+        elif 'borrowed' not in popup.title:
+            Book.update(user=User.get(name=global_data['user_name']), is_borrowed=True).where(
+                Book.name == book_name).execute()
 
 
 class MyApp(App):
