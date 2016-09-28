@@ -1,4 +1,4 @@
-# ----------------------------peewee is small but powerful enough--------------------------------- #
+# ------------------------------peewee is small/easy/powerful------------------------------------- #
 
 # ------------------------http://peewee.readthedocs.io/en/latest/index.html----------------------- #
 
