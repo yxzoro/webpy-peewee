@@ -12,8 +12,8 @@ class MainScreen(Screen):
         layout = BoxLayout(orientation='vertical')
 
         layout1 = BoxLayout(orientation='horizontal', size_hint=(1, 0.1))
-        layout1.add_widget(Label(text='-->', size_hint=(0.8, 1)))
-        layout1.add_widget(Button(text='-->', size_hint=(0.2, 1), backgroundcolor='blue'))
+        layout1.add_widget(Label(text='-->', size_hint=(0.8, 1), background_color=(0.5, 0.5, 1, 1)))
+        layout1.add_widget(Button(text='-->', size_hint=(0.2, 1), background_color=(0.5, 0.5, 1, 1)))
 
         layout2 = BoxLayout(orientation='vertical')
         layout2.add_widget(Button(text='1'))
