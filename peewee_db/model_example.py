@@ -1,5 +1,7 @@
-# --------------------------peewee is similar to Django + SQLAlchemy------------------------------ #
-# -------------------http://docs.peewee-orm.com/en/latest/peewee/querying.html-------------------- #
+# ----------------------------peewee is small but powerful enough--------------------------------- #
+
+# ------------------------http://peewee.readthedocs.io/en/latest/index.html----------------------- #
+
 
 from peewee import *
 from playhouse.sqlite_ext import SqliteExtDatabase
